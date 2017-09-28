@@ -59,9 +59,31 @@ class Genius < Multilinguist
   end
 end
 
-me = Genius.new
-puts me.report_total([23,45,676,34,5778,4,23,5465]) # The total is 12048
-me.travel_to("India")
-puts me.report_total([6,3,6,68,455,4,467,57,4,534]) # है को कुल 1604
-me.travel_to("Bulgaria")
-puts me.report_total([324,245,6,343647,686545]) # È Il totale 1030767
+class QuoteCollector < Multilinguist
+
+  def initialize
+    super
+    @quotes = []
+
+  end
+  def share_quote
+    puts say_in_local_language(@quotes.sample)
+  end
+  def add_quote(quote)
+    @quotes << quote
+  end
+end
+
+# me = Genius.new
+# puts me.report_total([23,45,676,34,5778,4,23,5465]) # The total is 12048
+# me.travel_to("India")
+# puts me.report_total([6,3,6,68,455,4,467,57,4,534]) # है को कुल 1604
+# me.travel_to("Bulgaria")
+# puts me.report_total([324,245,6,343647,686545]) # È Il totale 1030767
+
+me2 = QuoteCollector.new
+me2.add_quote("A fool and his money are soon parted")
+me2.add_quote("True ignorance is refusing to learn")
+
+me2.travel_to("Bulgaria")
+me2.share_quote
